@@ -1,0 +1,14 @@
+<namespace name="Mfcom.Cactus809.Core">
+	<tables>
+		<table name="Activity">
+			<columns>
+				<column name="Id" type="bigint" size="8"/>
+				<column name="UserId" type="int" size="4"/>
+				<column name="Dt" type="datetime" size="8"/>
+				<column name="WindowCaption" type="nvarchar" size="255"/>
+				<column name="ModuleName" type="nvarchar" size="255"/>
+				<column name="HasInput" type="int" size="1"/>
+			</columns>
+		</table>
+	</tables>
+</namespace>
