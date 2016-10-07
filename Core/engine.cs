@@ -18,8 +18,8 @@ namespace Mfcom.Core.Base
 		protected IDataStorageAdapter m_Adapter;
 
 		/// <summary>
-		/// Быстрое получение числа сущностей в соответствующем хранилище (таблице, представлении и т.п.)
-		/// без загрузки самих сущностей в коллекцию.
+		/// ГЃГ»Г±ГІГ°Г®ГҐ ГЇГ®Г«ГіГ·ГҐГ­ГЁГҐ Г·ГЁГ±Г«Г  Г±ГіГ№Г­Г®Г±ГІГҐГ© Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГҐГ¬ ГµГ°Г Г­ГЁГ«ГЁГ№ГҐ (ГІГ ГЎГ«ГЁГ¶ГҐ, ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГҐГ­ГЁГЁ ГЁ ГІ.ГЇ.)
+		/// ГЎГҐГ§ Г§Г ГЈГ°ГіГ§ГЄГЁ Г±Г Г¬ГЁГµ Г±ГіГ№Г­Г®Г±ГІГҐГ© Гў ГЄГ®Г«Г«ГҐГЄГ¶ГЁГѕ.
 		/// </summary>
 		public int Count
 		{
@@ -33,11 +33,11 @@ namespace Mfcom.Core.Base
 		}
 
 		/// <summary>
-		/// Вспомогательный метод. Выполняет основную работу по заполнению объекта данными на основании
-		/// атрибутов, навешенных на этот объект.
+		/// Г‚Г±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»Г© Г¬ГҐГІГ®Г¤. Г‚Г»ГЇГ®Г«Г­ГїГҐГІ Г®Г±Г­Г®ГўГ­ГіГѕ Г°Г ГЎГ®ГІГі ГЇГ® Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГѕ Г®ГЎГєГҐГЄГІГ  Г¤Г Г­Г­Г»Г¬ГЁ Г­Г  Г®Г±Г­Г®ГўГ Г­ГЁГЁ
+		/// Г ГІГ°ГЁГЎГіГІГ®Гў, Г­Г ГўГҐГёГҐГ­Г­Г»Гµ Г­Г  ГЅГІГ®ГІ Г®ГЎГєГҐГЄГІ.
 		/// </summary>
-		/// <param name="Row">Строка, из которой надо получать данные</param>
-		/// <returns>Заполненный объект</returns>
+		/// <param name="Row">Г‘ГІГ°Г®ГЄГ , ГЁГ§ ГЄГ®ГІГ®Г°Г®Г© Г­Г Г¤Г® ГЇГ®Г«ГіГ·Г ГІГј Г¤Г Г­Г­Г»ГҐ</param>
+		/// <returns>Г‡Г ГЇГ®Г«Г­ГҐГ­Г­Г»Г© Г®ГЎГєГҐГЄГІ</returns>
 		protected virtual T Make<T>(DataRow Row) where T : BaseItem, new()
 		{
 			var instance = new T();
@@ -75,44 +75,44 @@ namespace Mfcom.Core.Base
 		}
 
 		/// <summary>
-		/// Приведение считанных из хранилища полей к типам CTS
+		/// ГЏГ°ГЁГўГҐГ¤ГҐГ­ГЁГҐ Г±Г·ГЁГІГ Г­Г­Г»Гµ ГЁГ§ ГµГ°Г Г­ГЁГ«ГЁГ№Г  ГЇГ®Г«ГҐГ© ГЄ ГІГЁГЇГ Г¬ CTS
 		/// </summary>
-		/// <param name="Row">Строка, из которой получать поля</param>
-		/// <param name="MemberType">Тип свойства объекта</param>
-		/// <param name="FieldName">Имя поля в строке</param>
+		/// <param name="Row">Г‘ГІГ°Г®ГЄГ , ГЁГ§ ГЄГ®ГІГ®Г°Г®Г© ГЇГ®Г«ГіГ·Г ГІГј ГЇГ®Г«Гї</param>
+		/// <param name="MemberType">Г’ГЁГЇ Г±ГўГ®Г©Г±ГІГўГ  Г®ГЎГєГҐГЄГІГ </param>
+		/// <param name="FieldName">Г€Г¬Гї ГЇГ®Г«Гї Гў Г±ГІГ°Г®ГЄГҐ</param>
 		/// <returns></returns>
 		private object Preprocess(DataRow Row, Type MemberType, string FieldName)
 		{
 			object val = Row[FieldName];
 
-            if (val is DBNull)
-            {
-                if (MemberType == typeof(Int32))
-                    return 0;
-                if (MemberType == typeof(Int32?))
-                    return null;
-                if (MemberType == typeof(Int64))
-                    return 0L;
-                if (MemberType == typeof(Int64?))
-                    return null;
-                if (MemberType == typeof(Decimal) || MemberType == typeof(Decimal?))
-                    return NullDecimal.Value;
-                if (MemberType == typeof(DateTime) || MemberType == typeof(DateTime?))
-                    return NullDate.Value;
+			if (val is DBNull)
+			{
+				if (MemberType == typeof(Int32))
+					return 0;
+				if (MemberType == typeof(Int32?))
+					return null;
+				if (MemberType == typeof(Int64))
+					return 0L;
+				if (MemberType == typeof(Int64?))
+					return null;
+				if (MemberType == typeof(Decimal) || MemberType == typeof(Decimal?))
+					return NullDecimal.Value;
+				if (MemberType == typeof(DateTime) || MemberType == typeof(DateTime?))
+					return NullDate.Value;
 				if (MemberType == typeof(TimeSpan))
 					return NullTime.Value;
-                return MemberType == typeof(String)? null: TryUserConversionForNull(FieldName);
-            }
+				return MemberType == typeof(String)? null: TryUserConversionForNull(FieldName);
+			}
 
-		    if (MemberType == typeof(Int32) || MemberType == typeof(Int32?))
+		    	if (MemberType == typeof(Int32) || MemberType == typeof(Int32?))
 				return Convert.ToInt32(val);
-            if (MemberType == typeof(Int64) || MemberType == typeof(Int64?))
+			if (MemberType == typeof(Int64) || MemberType == typeof(Int64?))
 				return Convert.ToInt64(val);
-            if (MemberType == typeof(DateTime) || MemberType == typeof(DateTime?))
+			if (MemberType == typeof(DateTime) || MemberType == typeof(DateTime?))
 				return Convert.ToDateTime(val);
-            if (MemberType == typeof(Boolean) || MemberType == typeof(Boolean?))
+			if (MemberType == typeof(Boolean) || MemberType == typeof(Boolean?))
 				return Convert.ToBoolean(val);
-            if (MemberType == typeof(Decimal) || MemberType == typeof(Decimal?))
+			if (MemberType == typeof(Decimal) || MemberType == typeof(Decimal?))
 				return Convert.ToDecimal(val);
 			if (MemberType == typeof(String))
 				return Convert.ToString(val);
@@ -123,11 +123,11 @@ namespace Mfcom.Core.Base
 		}
 
 		/// <summary>
-		/// Шанс для пользовательского engine на такую обработку значения поля, которая нужна. Например,
-		/// требуется сделать преобразование int32(в БД) -> bool(свойство класса) 
+		/// ГГ Г­Г± Г¤Г«Гї ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГ®ГЈГ® engine Г­Г  ГІГ ГЄГіГѕ Г®ГЎГ°Г ГЎГ®ГІГЄГі Г§Г­Г Г·ГҐГ­ГЁГї ГЇГ®Г«Гї, ГЄГ®ГІГ®Г°Г Гї Г­ГіГ¦Г­Г . ГЌГ ГЇГ°ГЁГ¬ГҐГ°,
+		/// ГІГ°ГҐГЎГіГҐГІГ±Гї Г±Г¤ГҐГ«Г ГІГј ГЇГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ int32(Гў ГЃГ„) -> bool(Г±ГўГ®Г©Г±ГІГўГ® ГЄГ«Г Г±Г±Г ) 
 		/// </summary>
-		/// <param name="FieldName">Имя поля в БД, которое может быть использовано как признак необходимости преобразования</param>
-		/// <param name="Value">Исходное значение, вычитанное из БД, которое может быть использовано для преобразования</param>
+		/// <param name="FieldName">Г€Г¬Гї ГЇГ®Г«Гї Гў ГЃГ„, ГЄГ®ГІГ®Г°Г®ГҐ Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­Г® ГЄГ ГЄ ГЇГ°ГЁГ§Г­Г ГЄ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г®Г±ГІГЁ ГЇГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГї</param>
+		/// <param name="Value">Г€Г±ГµГ®Г¤Г­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ, ГўГ»Г·ГЁГІГ Г­Г­Г®ГҐ ГЁГ§ ГЃГ„, ГЄГ®ГІГ®Г°Г®ГҐ Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­Г® Г¤Г«Гї ГЇГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГї</param>
 		/// <returns></returns>
 		protected virtual object TryUserConversion(string FieldName, object Value)
 		{
