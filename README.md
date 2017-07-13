@@ -1,0 +1,3 @@
+ECC - ORM library snippets
+
+An Engine use a factory for creating an adapter that can use specific database (Oracle, MSSQL, etc.). This adapter uses a query to retrieve data, for example by filter, from the database. The engine then creates items (objects of classes of business logic) with retrieved data, and creates a collection for these items. Than you can use this collection with items in business logic, and when the changings are finished, it is possible to save all of the changes in database automatically. It wasn’t very complex library, but using XML description of an entity we generated with XSLT a set of classes and SQL-scripts and use them in our business logic layer.
